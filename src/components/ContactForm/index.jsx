@@ -20,19 +20,17 @@ export default class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
+    const { name, number } = this.state;
     if (
-      this.props.contacts.find(
-        (contact) => contact.name === this.state.name
-      ) === undefined
+      this.props.contacts.find((contact) => contact.name === name) === undefined
     ) {
-      if (isTelNumber(this.state.number)) {
-        this.props.addContact(this.state.name, this.state.number);
+      if (isTelNumber(number)) {
+        this.props.addContact(name, number);
       } else {
-        alert(`"${this.state.number}" is incorrect telephone number`);
+        alert(`"${number}" is incorrect telephone number`);
       }
     } else {
-      alert(`"${this.state.name}" is alredy in contacts`);
+      alert(`"${name}" is alredy in contacts`);
     }
 
     this.setState({ ...initialState });
